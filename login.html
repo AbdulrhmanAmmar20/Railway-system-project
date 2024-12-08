@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website with Login and Registration Form | CodingNepal</title>
+    <!-- Google Fonts Link For Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="style.css">
+    <script src="login.js" defer></script>
+</head>
+<body>
+    <div class="container1">
+        <nav class="navbar">
+            <span class="hamburger-btn material-symbols-rounded">menu</span>
+            <a href="#" class="logo">
+                <img src="assests/pexels-dreamypixel-552779.jpg" alt="logo">
+                <h2>CodingNepal</h2>
+            </a>
+            <ul class="links">
+                <span class="close-btn material-symbols-rounded">close</span>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <button class="login-btn">LOG IN</button>
+        </nav>
+    
+        <div class="content">
+            <h1>Book <br> Your Journey!</h1>
+            <p>Discover new places without the stress of driving—reserve your train ticket today and let the journey unfold!</p>
+            
+                <button type="submit" class="btn1">Book Now</button>
+            
+        </div>
+    </div>
+    
+
+    <div class="blur-bg-overlay"></div>
+    <div class="form-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <div class="form-box login">
+            <div class="form-details">
+                <h2>Welcome Back</h2>
+                <p>Please log in using your personal information to stay connected with us.</p>
+            </div>
+            <div class="form-content">
+                <h2>LOGIN</h2>
+                <form id="login-form" action="#">
+                    <div class="input-field">
+                        <input id="username" type="text" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="password" required>
+                        <label>Password</label>
+                    </div>
+                    <a href="#" class="forgot-pass-link">Forgot password?</a>
+
+                      <button type="submit" >Log In</button>
+                </form>
+
+                <div class="bottom-link">
+                    Don't have an account?
+                    <a href="#" id="signup-link">Signup</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-box signup">
+            <div class="form-details">
+                <h2>Create Account</h2>
+                <p>To become a part of our community, please sign up using your personal information.</p>
+            </div>
+            <div class="form-content">
+                <h2>SIGNUP</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Enter your email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" required>
+                        <label>Create password</label>
+                    </div>
+                    <div class="policy-text">
+                        <input type="checkbox" id="policy">
+                        <label for="policy">
+                            I agree the
+                            <a href="#" class="option">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="bottom-link">
+                    Already have an account? 
+                    <a href="#" id="login-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="cards-wrapper1">
+        <div class="card-grid-space1">
+          <a class="card1" href="" style="--bg-img: url('assests/Dammam.jpg')">
+            <div>
+              <h1>Book to Dammam Now</h1>
+              <div class="date1">7 Oct 2024</div>
+              <div class="tags1">
+                <div class="tag1">Book now</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="card-grid-space1">
+          <a class="card1" href="" style="--bg-img: url('assests/Ry.jpg')">
+            <div>
+              <h1>Vist the Bolefard World in Riyhad</h1>
+              <div class="date1">9 Oct 2024</div>
+              <div class="tags1">
+                <div class="tag1">Book now</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="card-grid-space1">
+          <a class="card1" href="" style="--bg-img: url('assests/jeddah.jpg')">
+            <div>
+              <h1>Vist Jeddah with 50 SR Only</h1>
+              <div class="date1">14 Oct 2024</div>
+              <div class="tags1">
+                <div class="tag1">Book now</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    
+      <div class="statistics" style="padding-top: 25px; padding-bottom: 25px">
+        <div class="limit-container">
+            <div class="statistics-container">
+                <div class="statistics-card scroll-animate">
+                    <p>Serving Over</p>
+                    <h2 data-count="340">0</h2>
+                    <p>Passengers</p>
+                </div>
+      
+                <div class="statistics-card scroll-animate">
+                    <p> Book Now <br> from </p>
+                    <h2 data-count="60" additional-data="+">0+</h2>
+                    <p>Train stations</p>
+                </div>
+      
+                <div class="statistics-card scroll-animate">
+                    <p>Sending out</p>
+                    <h2 data-count="50">0</h2>
+                    <p>Trains a day</p>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const elements = Array.from(document.querySelectorAll("h2[data-count]"));
+        
+        const observer = new IntersectionObserver(
+            function (entries) {
+                entries.forEach((entry) => {
+                    if (entry.intersectionRatio >= 0.5) {
+                        const index = elements.indexOf(entry.target);
+                        const delay = index * 250; // Stagger the animations for each element
+                        setTimeout(() => startCounter(entry.target), delay);
+                        observer.unobserve(entry.target); // Stop observing once the animation starts
+                    }
+                });
+            },
+            {
+                threshold: 0.5 // Trigger when the element is 50% visible
+            }
+        );
+      
+        elements.forEach((element) => observer.observe(element)); // Start observing all elements
+      
+        function startCounter(element) {
+            const target = parseInt(element.getAttribute("data-count"));
+            const additionalData = element.getAttribute("additional-data") || ""; // For elements like "0+" or "0"
+            const totalFrames = 480; // Total number of frames for animation
+            let frame = 0;
+      
+            // Ease-out function to make the animation smooth
+            function easeOut(t, b, c, d) {
+                return c * ((t = t / d - 1) * t * t + 1) + b;
+            }
+      
+            // Animation loop
+            function counter() {
+                if (frame >= totalFrames) {
+                    element.textContent = target + additionalData; // Set final value
+                    return;
+                }
+                frame++;
+                const easedValue = easeOut(frame, 0, target, totalFrames); // Get the eased value for smooth transition
+                element.textContent = Math.floor(easedValue) + additionalData; // Update the text content
+                requestAnimationFrame(counter); // Call counter function again for the next frame
+            }
+            counter(); // Start the counter animation
+        }
+      });
+      </script>
+
+        
+<div class="card-main container">
+    <div class="row ">
+      <div class="col-md-6 card-info-section order-2 order-md-1">
+        <div class="row">
+          <h1 class="card-header text-center text-md-start ">Unlock the <span style="color: hsl(277, 64%, 61%);">power</span> of seamless travel planning.</h1>
+          <p class="card-info text-center text-md-start ">Explore the advantages of our train reservation system and make smarter choices for your journeys, 
+            from booking tickets to optimizing your travel experience.</p>
+        </div>
+        <div class="row mt-5">
+          <div class="col-12 col-sm-4 text-center ">
+            <h2 class="card-stat">6M+</h2>
+            <p class="card-stat-header">TRAVELERS</p>
+          </div>
+          <div class="col-12 col-sm-4 text-center ">
+            <h2 class="card-stat">150</h2>
+            <p class="card-stat-header">ROUTES</p>
+          </div>
+          <div class="col-12 col-sm-4 text-center ">
+            <h2 class="card-stat">50K+</h2>
+            <p class="card-stat-header">TICKETS BOOKED DAILY</p>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-6 order-1 order-md-2">
+        <img class="header-img" src="./assests/pexels-dreamypixel-552779.jpg" alt="Header Image">
+      </div>
+    </div>
+  </div>
+  
+
+
+
+<footer class="footer">
+  <div class="container">
+   <div class="row">
+     <div class="footer-col">
+       <h4>company</h4>
+       <ul>
+         <li><a href="#">about us</a></li>
+         <li><a href="#">our services</a></li>
+         <li><a href="#">privacy policy</a></li>
+         <li><a href="#">Loyalety program</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>get help</h4>
+       <ul>
+         <li><a href="#">FAQ</a></li>
+         <li><a href="#">teckets</a></li>
+         <li><a href="#">returns</a></li>
+         <li><a href="#">booking status</a></li>
+         <li><a href="#">payment options</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>online booking</h4>
+       <ul>
+         <li><a href="#">busnisses class</a></li>
+         <li><a href="#">economy class</a></li>
+         <li><a href="#">VIP Trains</a></li>
+         <li><a href="#"></a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>follow us</h4>
+       <div class="social-links">
+         <a href="#"><i class="fab fa-facebook-f"></i></a>
+         <a href="#"><i class="fab fa-twitter"></i></a>
+         <a href="#"><i class="fab fa-instagram"></i></a>
+         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+       </div>
+     </div>
+   </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

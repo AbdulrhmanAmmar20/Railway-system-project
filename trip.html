@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="trip-style.css">
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="#" class="logo">
+        <img src="./assests/train.png" alt="Logo">
+        A-train
+    </a>
+    <div class="menu">
+        <a href="#services">Account</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</nav>
+
+<div class="trip-background">
+    <div class="search-container">
+        <div class="search-tabs">
+            <button class="tab active">Roundtrip</button>
+            <button class="tab">One-way</button>
+            <button class="tab">Multi-city</button>
+        </div>
+        
+        <div class="search-fields">
+            <div class="field">
+                <span class="icon">🚆</span>
+                <input type="text" id="leaving-from" placeholder="Leaving from">
+            </div>
+
+            <button class="swap-button">🔄</button>
+            <div class="field">
+                <span class="icon"> 🚉 </span>
+                <input type="text" id="going-to" placeholder="Going to">
+            </div>
+            <div class="field">
+                <span class="icon">📅</span>
+                <input type="date" id="departure-date">
+            </div>
+
+            <div class="search-options">
+                <select class="option">
+                    <option>Economy</option>
+                    <option>Business</option>
+                    <option>First Class</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="search-button">Search</button>
+    </div>
+</div>
+
+<div id="output-list"></div>
+
+<script src="trip.js"></script>
