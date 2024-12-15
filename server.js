@@ -515,20 +515,11 @@ app.get('/get-loyalty-info', async (req, res) => {
 
 
 
+/////////////////////////////////////////////// Admin page functionalities /////////////////////////////////////////////////
 
 
-
-
-
-
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-
-
-
+/////////////////// Functionality 1: Manage reservations //////////////////////////
+// Fetch all reservations
 // Serve the manage-reservations page
 app.get("/manage-reservations", (req, res) => {
   res.sendFile(path.join(_dirname, "manage-reservations.html"));
@@ -556,7 +547,7 @@ app.get("/reservations/:id", async (req, res) => {
   const bookingId = req.params.id;
 
   try {
-    const query = 'SELECT * FROM booking WHERE booking_id = $1';
+    const query = "SELECT * FROM booking WHERE booking_id = $1";
     const result = await client.query(query, [bookingId]);
 
     if (result.rows.length > 0) {
@@ -585,7 +576,7 @@ app.post("/reservations/add", async (req, res) => {
 
   try {
     // Query to find the maximum booking_id in the table
-    const maxIdQuery =' SELECT COALESCE(MAX(booking_id), 0) AS max_id FROM booking';
+    const maxIdQuery = "SELECT COALESCE(MAX(booking_id), 0) AS max_id FROM booking";
     const maxIdResult = await client.query(maxIdQuery);
 
     // Calculate the next booking_id
@@ -663,7 +654,7 @@ app.put("/reservations/cancel/:id", async (req, res) => {
   const bookingId = req.params.id;
 
   try {
-    const query = 'UPDATE booking SET booking_status = Canceled WHERE booking_id = $1';
+    const query = "UPDATE booking SET booking_status = 'Canceled' WHERE booking_id = $1";
     await client.query(query, [bookingId]);
 
     res.status(200).json({ success: true, message: "Booking status updated to Canceled." });
@@ -673,6 +664,8 @@ app.put("/reservations/cancel/:id", async (req, res) => {
   }
 });
 
+
+/////////////////// Functionality 2: Assign Staff ////////////////////////////////
 // Back button to redirect to staff.html
 app.get("/staff", (req, res) => {
   res.sendFile(path.join(_dirname, "staff.html"));
@@ -736,7 +729,7 @@ app.post('/assign-staff', async (req, res) => {
     if (conflictResult.rows.length > 0) {
       return res.status(409).json({
         success: false,
-        message:' Staff member "${staff_name}" is already assigned to another trip on ${trip_date}.',
+        message: 'Staff member "${staff_name}" is already assigned to another trip on ${trip_date}.',
       });
     }
 
@@ -757,3 +750,348 @@ app.post('/assign-staff', async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to assign staff.' });
   }
 });
+
+
+/////////////////// Functionality 3: Promote Passenger //////////////////////////
+// Endpoint to fetch waitlisted bookings
+app.get('/waitlisted-bookings', async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        b.booking_id, 
+        p.name, 
+        s1.name AS departure_station, 
+        s2.name AS arrival_station, 
+        b.class_type, 
+        b.booking_status
+      FROM booking b
+      JOIN passenger p ON b.email = p.email
+      JOIN trip t ON b.trip_id = t.trip_id
+      JOIN station s1 ON t.departure = s1.sequence_no
+      JOIN station s2 ON t.arrival = s2.sequence_no
+      WHERE b.booking_status = 'Waitlisted';
+    `;
+    const result = await client.query(query);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching waitlisted bookings:', error);
+    res.status(500).send('Server error while fetching waitlisted bookings');
+  }
+});  
+
+
+// Endpoint to promote a booking with capacity constraint
+app.post('/promote-booking/:bookingId', async (req, res) => {
+  const { bookingId } = req.params;
+
+  try {
+    // Get trip, train details, and number of seats for the booking
+    const tripQuery = `
+      SELECT 
+        tr.train_id, 
+        tr.trip_id, 
+        tr.departure_time, 
+        tr.arrival_time,
+        tr.trip_date,
+        b.number_of_seats, -- Seats for the current waitlisted booking
+        train.economy_seats_no + train.business_seats_no AS train_capacity
+      FROM booking b
+      JOIN trip tr ON b.trip_id = tr.trip_id
+      JOIN train ON tr.train_id = train.train_id
+      WHERE b.booking_id = $1;
+    `;
+    const tripResult = await client.query(tripQuery, [bookingId]);
+
+    if (tripResult.rows.length === 0) {
+      return res.status(404).send('Booking not found');
+    }
+
+    const trip = tripResult.rows[0];
+
+    // Calculate total seats already booked for this trip
+    const seatQuery = `
+      SELECT COALESCE(SUM(b.number_of_seats), 0) AS total_booked_seats
+      FROM booking b
+      WHERE b.trip_id = $1 AND b.booking_status = 'Permanent';
+    `;
+    const seatResult = await client.query(seatQuery, [trip.trip_id]);
+    const totalBookedSeats = seatResult.rows[0].total_booked_seats;
+
+    // Check if seats are available (including the number of seats in the waitlisted booking)
+    if (totalBookedSeats + trip.number_of_seats > trip.train_capacity) {
+      return res.status(400).send('No available seats to promote this booking');
+    }
+
+    
+    // Promote the booking
+    const updateQuery = `
+      UPDATE booking
+      SET booking_status = 'Permanent'
+      WHERE booking_id = $1 AND booking_status = 'Waitlisted';
+    `;
+    const updateResult = await client.query(updateQuery, [bookingId]);
+
+    if (updateResult.rowCount > 0) {
+      res.status(200).send('Booking successfully promoted');
+    } else {
+      res.status(404).send('Booking not found or already promoted');
+    }
+  } catch (error) {
+    console.error('Error promoting booking:', error);
+    res.status(500).send('Server error while promoting booking');
+  }
+});
+
+///////////////////////////////////////////////////////////////////////
+
+////////////////////////// Functionality 4: Show Active Trains //////////////////////////
+
+// Endpoint to fetch active trains for today
+app.get('/active-trains', async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        t.english_name AS train_name,
+        s1.name AS departure_station,
+        s2.name AS arrival_station,
+        tr.departure_time,
+        tr.arrival_time,
+        tr.trip_date
+      FROM trip tr
+      JOIN train t ON tr.train_id = t.train_id
+      JOIN station s1 ON tr.departure = s1.sequence_no
+      JOIN station s2 ON tr.arrival = s2.sequence_no
+      WHERE tr.trip_date = CURRENT_DATE;
+    `;
+    const result = await client.query(query);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching active trains:', error);
+    res.status(500).send('Server error while fetching active trains');
+  }
+});
+
+////////////////////////// Functionality 5: Train Stations Paths  //////////////////////////
+
+// Endpoint to fetch train station paths
+app.get('/train-stations', async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        t.english_name AS train_name,
+        tr.departure AS departure_station_id,
+        s1.name AS departure_station,
+        tr.middle AS middle_station_id,
+        s2.name AS middle_station,
+        tr.arrival AS destination_station_id,
+        s3.name AS destination_station,
+        tr.number_of_miles
+      FROM trip tr
+      JOIN train t ON tr.train_id = t.train_id
+      JOIN station s1 ON tr.departure = s1.sequence_no
+      LEFT JOIN station s2 ON tr.middle = s2.sequence_no
+      JOIN station s3 ON tr.arrival = s3.sequence_no
+      ORDER BY t.english_name, tr.trip_id;
+    `;
+
+    const result = await client.query(query);
+
+    // Organize data by train
+    const trains = {};
+    result.rows.forEach(row => {
+      if (!trains[row.train_name]) {
+        trains[row.train_name] = [];
+      }
+      trains[row.train_name].push({
+        departure_station: row.departure_station,
+        middle_station: row.middle_station,
+        destination_station: row.destination_station,
+        number_of_miles: row.number_of_miles,
+      });
+    });
+
+    // Format the response
+    const response = Object.keys(trains).map(trainName => ({
+      train_name: trainName,
+      paths: trains[trainName],
+    }));
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Error fetching train station paths:', error);
+    res.status(500).send('Server error while fetching train station paths');
+  }
+});
+
+////////////////////////// Functionality 5: Showing Waitlisted Passengers With Loyalty  //////////////////////////
+
+app.get('/loyalty-waitlist', async (req, res) => {
+  const { trainNumber } = req.query;
+
+  if (!trainNumber) {
+    console.error('Train number is missing');
+    return res.status(400).send('Train number is required');
+  }
+
+  try {
+    const query = `
+      SELECT 
+        p.name,
+        p.loyalty_class,
+        p.email,
+        b.number_of_seats,
+        b.booking_status,
+        b.class_type
+      FROM booking b
+      JOIN passenger p ON b.email = p.email
+      JOIN trip t ON b.trip_id = t.trip_id
+      JOIN train tr ON t.train_id = tr.train_id
+      WHERE tr.train_id = $1 AND b.booking_status = 'Waitlisted'
+      ORDER BY p.loyalty_class DESC, b.class_type ASC;
+    `;
+    console.log('Executing query with trainNumber:', trainNumber);
+    const result = await client.query(query, [trainNumber]);
+
+    console.log('Query result:', result.rows); // Log query results
+    if (result.rows.length === 0) {
+      console.log('No waitlisted passengers found for this train');
+      return res.status(200).json({});
+    }
+
+    // Organize data by class type
+    const classes = {};
+    result.rows.forEach(row => {
+      if (!classes[row.class_type]) {
+        classes[row.class_type] = [];
+      }
+      classes[row.class_type].push({
+        name: row.name,
+        loyalty_class: row.loyalty_class,
+        email: row.email,
+        number_of_seats: row.number_of_seats,
+        booking_status: row.booking_status,
+      });
+    });
+
+    console.log('Organized data by class:', classes);
+    res.status(200).json(classes);
+  } catch (error) {
+    console.error('Error fetching loyalty waitlist:', error);
+    res.status(500).send('Server error while fetching loyalty waitlist');
+  }
+});
+
+
+// Endpoint to fetch available trains
+app.get('/available-trains', async (req, res) => {
+  try {
+    const query = `
+      SELECT train_id, english_name, arabic_name
+      FROM train
+      ORDER BY english_name;
+    `;
+    const result = await client.query(query);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching available trains:', error);
+    res.status(500).send('Server error while fetching available trains');
+  }
+});
+/////////////////////////// Functionality 6 (Bonus): Train Load Factor //////////////////////////////
+app.get('/load-factors', async (req, res) => {
+  const { date } = req.query;
+
+  if (!date) {
+    return res.status(400).send('Date is required');
+  }
+
+  try {
+    const query = `
+      SELECT 
+        train.english_name AS train_name,
+        train.arabic_name AS train_name_arabic,
+        (train.economy_seats_no + train.business_seats_no) AS total_seats,
+        COALESCE(SUM(b.number_of_seats), 0) AS occupied_seats,
+        s1.name AS departure_station,
+        s2.name AS middle_station,
+        s3.name AS destination_station
+      FROM train
+      LEFT JOIN trip tr ON tr.train_id = train.train_id
+      LEFT JOIN station s1 ON tr.departure = s1.sequence_no
+      LEFT JOIN station s2 ON tr.middle = s2.sequence_no
+      LEFT JOIN station s3 ON tr.arrival = s3.sequence_no
+      LEFT JOIN booking b ON b.trip_id = tr.trip_id AND b.booking_status = 'Permanent'
+      WHERE tr.trip_date = $1
+      GROUP BY train.english_name, train.arabic_name, train.economy_seats_no, train.business_seats_no, 
+               s1.name, s2.name, s3.name;
+    `;
+    const result = await client.query(query, [date]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching load factors:', error);
+    res.status(500).send('Server error while fetching load factors');
+  }
+});
+
+
+/////////////////////////// Functionality 7 (Bonus): Travelling Dependents //////////////////////////////
+app.get('/dependents', async (req, res) => {
+  const { date } = req.query;
+
+  if (!date) {
+    console.log('No date provided in the request');
+    return res.status(400).send('Date is required');
+  }
+
+  console.log(`Fetching dependents for date: ${date}`);
+
+  try {
+    const query = `
+  SELECT 
+    p.name AS passenger_name, -- Ensure passenger name is included
+    d.name AS dependent_name,
+    d.relationship AS relationship,
+    d.price AS price,
+    train.english_name AS train_name,
+    train.arabic_name AS train_name_arabic,
+    s1.name AS departure_station,
+    s2.name AS middle_station,
+    s3.name AS destination_station
+  FROM dependent_booking d
+  JOIN booking b ON d.booking_id = b.booking_id
+  JOIN passenger p ON b.email = p.email -- Join passenger to fetch name
+  JOIN trip tr ON b.trip_id = tr.trip_id
+  JOIN train ON tr.train_id = train.train_id
+  JOIN station s1 ON tr.departure = s1.sequence_no
+  LEFT JOIN station s2 ON tr.middle = s2.sequence_no
+  JOIN station s3 ON tr.arrival = s3.sequence_no
+  WHERE tr.trip_date = $1;
+`;
+    const result = await client.query(query, [date]);
+    console.log(`Query Result: ${JSON.stringify(result.rows)}`);
+
+    if (result.rows.length === 0) {
+      console.log('No dependents found for the given date');
+      return res.status(404).send('No dependents found for the given date');
+    }
+
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching dependents:', error);
+    res.status(500).send('Server error while fetching dependents');
+  }
+});
+
+
+
+
+
+
+
+
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
