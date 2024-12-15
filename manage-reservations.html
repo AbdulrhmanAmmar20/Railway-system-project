@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Reservations</title>
+  <link rel="stylesheet" href="manage-reservations.css">
+</head>
+<body>
+  <header>Manage Reservations</header>
+  <button class="back-button" onclick="window.location.href='staff.html'">Back to Staff</button>
+
+  <div class="container">
+    <div class="sidebar">
+      <button onclick="showSection('add')">Add Reservation</button>
+    </div>
+
+    <div class="main-content">
+      <table id="reservations-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Trip ID</th>
+            <th>Class</th>
+            <th>Total Price</th>
+            <th>Luggage</th>
+            <th>No. of Luggage</th>
+            <th>Seat</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <form id="add-form" class="hidden">
+        <h2>Add Reservation</h2>
+        <input type="email" id="add-email" placeholder="Email" required>
+        <input type="number" id="add-trip-id" placeholder="Trip ID" required>
+        
+        <!-- Dropdown for Class -->
+        <select id="add-class-type" required>
+          <option value="">Select Class</option>
+          <option value="economy">Economy</option>
+          <option value="business">Business</option>
+        </select>
+
+        <input type="number" step="0.01" id="add-total-price" placeholder="Total Price" required>
+        <input type="number" step="0.01" id="add-luggage-weight" placeholder="Luggage Weight" required>
+        <input type="number" id="add-no-of-luggage" placeholder="No. of Luggage" required>
+        <input type="text" id="add-seat-no" placeholder="Seat No." required>
+        
+        <!-- Dropdown for Status -->
+        <select id="add-booking-status" required>
+          <option value="">Select Status</option>
+          <option value="Permanent">Permanent</option>
+          <option value="Reserved">Reserved</option>
+          <option value="Waitlisted">Waitlisted</option>
+          <option value="Canceled">Canceled</option>
+        </select>
+
+        <button type="submit">Add Reservation</button>
+      </form>
+
+      <form id="edit-form" class="hidden">
+        <h2>Edit Reservation</h2>
+        <input type="email" id="edit-email" placeholder="Email" required>
+        <input type="number" id="edit-trip-id" placeholder="Trip ID" required>
+        
+        <!-- Dropdown for Class -->
+        <select id="edit-class-type" required>
+          <option value="">Select Class</option>
+          <option value="economy">Economy</option>
+          <option value="business">Business</option>
+        </select>
+
+        <input type="number" step="0.01" id="edit-total-price" placeholder="Total Price" required>
+        <input type="number" step="0.01" id="edit-luggage-weight" placeholder="Luggage Weight" required>
+        <input type="number" id="edit-no-of-luggage" placeholder="No. of Luggage" required>
+        <input type="text" id="edit-seat-no" placeholder="Seat No." required>
+        
+        <!-- Dropdown for Status -->
+        <select id="edit-booking-status" required>
+          <option value="">Select Status</option>
+          <option value="Permanent">Permanent</option>
+          <option value="Reserved">Reserved</option>
+          <option value="Waitlisted">Waitlisted</option>
+          <option value="Canceled">Canceled</option>
+        </select>
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="manage-reservations.js"></script>
+</body>
+</html>

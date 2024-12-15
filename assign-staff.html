@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assign Staff</title>
+  <link rel="stylesheet" href="assign-staff.css">
+</head>
+<body>
+  <header>
+    <h1>Assign Staff to Trips</h1>
+    <button class="back-button" onclick="window.location.href='staff.html'">Back to Staff</button>
+  </header>
+  <div class="content">
+    <form id="assign-staff-form">
+      <h2>Assign Staff</h2>
+      <label for="tripId">Trip ID:</label>
+      <input type="number" id="tripId" placeholder="Enter Trip ID" required>
+      
+      <label for="staffName">Staff Name:</label>
+      <input type="text" id="staffName" placeholder="Enter Staff Name" required>
+      
+      <label for="staffType">Staff Role:</label>
+      <select id="staffType">
+        <option value="Driver">Driver</option>
+        <option value="Engineer">Engineer</option>
+      </select>
+      
+      <label for="date">Trip Date:</label>
+      <input type="date" id="date" required>
+      
+      <button type="submit">Assign Staff</button>
+    </form>
+    
+    <table id="train-details">
+      <thead>
+        <tr>
+          <th>Train ID</th>
+          <th>Trip ID</th>
+          <th>Train Name</th>
+          <th>Driver</th>
+          <th>Engineer</th>
+          <th>Trip Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be dynamically loaded here -->
+      </tbody>
+    </table>
+  </div>
+  <script src="assign-staff.js"></script>
+</body>
+</html>

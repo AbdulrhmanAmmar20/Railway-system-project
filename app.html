@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>Document</title>
+</head>
+<header>
+    <nav class="navbar">
+        <span class="hamburger-btn material-symbols-rounded">menu</span>
+        <a href="#" class="logo">
+            <img src="" alt="logo">
+            <h2>A-train baby</h2>
+        </a>
+        <ul class="links">
+            <span class="close-btn material-symbols-rounded">close</span>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+        </ul>
+        <button class="login-btn">LOG IN</button>
+    </nav>
+</header>
+
+<div class="blur-bg-overlay"></div>
+    <div class="form-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <div class="form-box login">
+            <div class="form-details">
+                <h2>Welcome Back</h2>
+                <p>Please log in using your personal information to stay connected with us.</p>
+            </div>
+            <div class="form-content">
+                <h2>LOGIN</h2>
+                <form id="login-form" action="#">
+                    <div class="input-field">
+                        <input id="email" type="text" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="password" required>
+                        <label>Password</label>
+                    </div>
+                    <a href="#" class="forgot-pass-link">Forgot password?</a>
+
+                      <button type="submit" >Log In</button>
+                </form>
+
+                <div class="bottom-link">
+                    Don't have an account?
+                    <a href="#" id="signup-link">Signup</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-box signup">
+            <div class="form-details">
+                <h2>Create Account</h2>
+                <p>To become a part of our community, please sign up using your personal information.</p>
+            </div>
+            <div class="form-content">
+                <h2>SIGNUP</h2>
+                <form id="signup-form">
+                    <div class="input-field">
+                        <input type="text" id="name" required>
+                        <label>Enter your name</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text"  required>
+                        <label>Enter your email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="password" required>
+                        <label>Create password</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="date" id="birth_date" required>
+                        <label>Date of Birth</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="phone_number" required>
+                        <label>Phone Number</label>
+                    </div>
+                    <div class="policy-text">
+                        <input type="checkbox" id="policy" required>
+                        <label for="policy">
+                            I agree to the
+                            <a href="#" class="option">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="bottom-link">
+                    Already have an account? 
+                    <a href="#" id="login-link">Login</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+
+
+<main class="hero-section" id="hero-section">
+
+    <div class="hero-section-content" data-aos="fade-up">
+        <h1 class="hero-section-title">wonderful experience</h1>
+        <p class="hero-section-sub-heading">book your train ticket today and let the journey unfold!</p>
+    </div>
+
+    <!-- scroll down img -->
+    <img src="./Img/down arrow.png" class="scroll-down-icon" alt="scroll down indicator">
+</main>
+
+
+<div class="background">
+    <img src="./assests/pexels-jefriwibawa-1387037.jpg" class="background-image" alt="hero-section image">
+
+    <!-- grid -->
+    <div class="grid-slider">
+        <div class="grid-item hide"></div>
+        <div class="grid-item hide"></div>
+        <div class="grid-item hide"></div>
+        <div class="grid-item hide"></div>
+        <div class="grid-item hide"></div>
+        <div class="grid-item hide"></div>
+    </div>
+
+</div>
+
+
+<section class="explore-section" id="explore-section">
+    <h1 class="section-title" data-aos="fade-up">Explore Saudi Arabia</h1>
+    <p class="section-para" data-aos="fade-up">Train travel offers a unique experience, combining comfort and scenic views.Passengers can enjoy the journey, watching landscapes shift from urban skylines to serene countryside.</p>
+
+    <!-- grid -->
+
+    <div class="tours-container">
+        <div class="tour-card" data-aos="fade-up">
+            <img src="img/australia.png" class="tour-img" alt="tour-image">
+            <div class="tour-body">
+                <h3 class="tour-name">Australia</h3>
+                <p class="tour-action">View city</p>
+            </div>
+        </div>
+
+        <div class="tour-card" data-aos="fade-up">
+            <img src="img/maldives.png" class="tour-img" alt="tour-image">
+            <div class="tour-body">
+                <h3 class="tour-name">Maldives</h3>
+                <p class="tour-action">View city</p>
+            </div>
+        </div>
+
+        <div class="tour-card" data-aos="fade-up">
+            <img src="img/paris.png" class="tour-img" alt="tour-image">
+            <div class="tour-body">
+                <h3 class="tour-name">Paris</h3>
+                <p class="tour-action">View city</p>
+            </div>
+        </div>
+
+        <div class="tour-card" data-aos="fade-up">
+            <img src="img/dubai.png" class="tour-img" alt="tour-image">
+            <div class="tour-body">
+                <h3 class="tour-name">Dubai</h3>
+                <p class="tour-action">View city</p>
+            </div>
+        </div>
+
+        <div class="tour-card" data-aos="fade-up">
+            <img src="img/india.png" class="tour-img" alt="tour-image">
+            <div class="tour-body">
+                <h3 class="tour-name">India</h3>
+                <p class="tour-action">View city</p>
+            </div>
+        </div>
+
+        <div class="tour-card" data-aos="fade-up">
+            <img src="img/italy.png" class="tour-img" alt="tour-image">
+            <div class="tour-body">
+                <h3 class="tour-name">Italy</h3>
+                <p class="tour-action">View city</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- statistics -->
+
+
+<div class="statistics" style="padding-top: 25px; padding-bottom: 25px">
+    <div class="limit-container">
+        <div class="statistics-container">
+            <div class="statistics-card scroll-animate">
+                <p>Serving Over</p>
+                <h2 data-count="340">0</h2>
+                <p>Passengers</p>
+            </div>
+  
+            <div class="statistics-card scroll-animate">
+                <p> Book Now <br> from </p>
+                <h2 data-count="60" additional-data="+">0+</h2>
+                <p>Train stations</p>
+            </div>
+  
+            <div class="statistics-card scroll-animate">
+                <p>Sending out</p>
+                <h2 data-count="50">0</h2>
+                <p>Trains a day</p>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="counter.js"></script>
+
+  <!-- services -->
+<section class="services-section" id="services">
+    <h1 class="section-title" data-aos="fade-up">Why Us ?</h1>
+    <p class="section-para" data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+
+    <!-- services grid -->
+    <div class="serives-grid">
+        <div class="service-card" data-aos="fade-up">
+            <div class="circle"></div>
+            <i class="fa-solid fa-earth-americas card-icon"></i>
+            <p class="service-text">We are based all over the world</p>
+        </div>
+        <div class="service-card" data-aos="fade-up">
+            <div class="circle"></div>
+            <i class="fa-solid fa-coins card-icon"></i>
+            <p class="service-text">Travel the World,Without thinking</p>
+        </div>
+        <div class="service-card" data-aos="fade-up">
+            <div class="circle"></div>
+            <i class="fa-solid fa-book-open card-icon"></i>
+            <p class="service-text">Get to know about local cultures</p>
+        </div>
+        <div class="service-card" data-aos="fade-up">
+            <div class="circle"></div>
+            <i class="fa-solid fa-person-snowboarding card-icon"></i>
+            <p class="service-text">Have you best experience</p>
+        </div>
+    </div>
+
+    <div class="bg-circle"></div>
+
+    <div class="travel-grid" id="travel">
+        <img src=".img/img1.png" data-aos="fade-up" alt="">
+        <img src="img/img2.png" data-aos="fade-up" alt="">
+        <img src="img/img3.png" data-aos="fade-up" alt="">
+        <img src="img/img4.png" data-aos="fade-up" alt="">
+        <img src="img/img5.png" data-aos="fade-up" alt="">
+        <img src="img/img6.png" data-aos="fade-up" alt="">
+        <img src="img/australia.png" data-aos="fade-up" alt="">
+        <img src="img/dubai.png" data-aos="fade-up" alt="">
+        <img src="img/maldives.png" data-aos="fade-up" alt="">
+        <img src="img/paris.png" data-aos="fade-up" alt="">
+        <img src="img/india.png" data-aos="fade-up" alt="">
+        <img src="img/italy.png" data-aos="fade-up" alt="">
+    </div>
+
+</section>
+
+
+
+
+<!-- contact section -->
+<section class="book-section" id="booknow">
+    <div class="book-content" data-aos="fade-up">
+        <h1 class="book-now-title">Book your travel today</h1>
+        <p class="book-now-text">Give yourself and your family a peacfull and wonderful vacation this holiday</p>
+
+        <button class="book-now">book now</button>
+    </div>
+    <div class="bg-circle-2"></div>
+    <img src="img/book.png" data-aos="fade-up" class="book-now-img" alt="">
+</section>
+
+<!-- footer -->
+<footer class="footer">
+    <img src="img/logo.png" class="footer-logo" alt="">
+    <div class="footer-text">
+        <p>Travel the world, on this holiday</p>
+        <p>Email - support@travel.com</p>
+        <p>Phone - 99 88 776655, 99 88 776644</p>
+    </div>
+    <p class="copyright-line">This design is a concept design. Made by Modern Web ❤️</p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="app.js"></script>
+
+</html>

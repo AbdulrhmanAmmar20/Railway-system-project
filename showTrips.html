@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Page</title>
+  <link rel="stylesheet" href="showTrips.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#" class="logo">A-train</a>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </nav>
+
+  <div class="container">
+    <h1>Welcome, <span id="username-display"></span>!</h1>
+    <h2>Your Trips</h2>
+    <div id="trips-container">
+      <!-- User trips will be displayed here -->
+    </div>
+  </div>
+
+  <script src="showTrips.js"></script>
+</body>
+</html>

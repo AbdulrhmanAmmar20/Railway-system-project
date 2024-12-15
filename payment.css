@@ -1,0 +1,299 @@
+/* General Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #1B1833;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar .logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.navbar .menu {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar .menu a:hover {
+    color: #6a11cb;
+}
+
+.navbar .logout-btn {
+    margin-top: 5px;
+    background: #441752;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.navbar .logout-btn:hover {
+    background: #2575fc;
+}
+
+/* Payment Page Styling */
+.mainscreen {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    color: #1B1833;
+}
+
+.card {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.rightside {
+    background-color: #f2f2f2;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.rightside h1 {
+    font-size: 1.8rem;
+    color: #441752;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rightside h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.rightside p {
+    font-size: 1rem;
+    color: #441752;
+    margin-bottom: 10px;
+}
+
+.inputbox {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    background-color: #fff;
+}
+
+.inputbox:focus {
+    border-color: #441752;
+    box-shadow: 0 0 5px rgba(68, 23, 82, 0.5);
+}
+
+.button {
+    background: #441752;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+.button:hover {
+    background: #2575fc;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#total-price {
+    font-size: 1.5rem;
+    color: #441752;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.ticket-card {
+    border: 2px solid #441752; /* Add a purple border */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px auto; /* Add space between tickets */
+    width: 90%; /* Adjust width to occupy more space */
+    max-width: 800px; /* Limit the maximum width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.ticket-card h3 {
+    margin: 0.2rem 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.ticket-card .departure-arrival {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2e86de;
+    margin-bottom: 0.5rem;
+}
+
+.ticket-card .ticket-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 1rem;
+}
+
+.ticket-card .ticket-details span {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.ticket-card .seat-number {
+    font-weight: bold;
+    color: #441752;
+}
+
+.ticket-card .seat-number span {
+    font-weight: normal;
+    color: #777;
+}
+
+#seat{
+    font-size: 1.5rem;
+    color: rgb(84, 84, 214);
+}
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+.custom-kontakt .barcode-box { 
+  width: 300px; 
+  height: 150px; 
+  padding-right: 5px;
+  margin-left:auto; 
+  margin-right:auto; 
+}
+.custom-kontakt .barcode-box .barcode-stripes .stripe-1 { 
+  display: block; 
+  height: 120px; 
+  width: 3px; 
+  float: left; 
+  border-right: thin solid #000;
+  border-left: thin solid #000; 
+  border-top-color: #fff; 
+  border-bottom-color: #fff; 
+}
+.custom-kontakt .barcode-box .barcode-stripes .stripe-2 { 
+  display: block; 
+  height: 110px; 
+  width: 5px; 
+  float: left; 
+  margin-left: 1px; 
+  margin-right: 1px; 
+  border-right: thick solid #000;
+  border-left: thick solid #000; 
+  border-top-color: #fff; 
+  border-bottom-color: #fff; 
+}
+.custom-kontakt .barcode-box .barcode-stripes .stripe-3 { 
+  display: block; 
+  height: 120px; 
+  width: 5px; 
+  float: left; 
+  margin-left: 1px; 
+  margin-right: 1px; 
+  border-right: thick solid #000;
+  border-left: thin solid #000; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig1, .custom-kontakt .barcode-box .barcode-stripes span.sig2, .custom-kontakt .barcode-box .barcode-stripes span.sig3, .custom-kontakt .barcode-box .barcode-stripes span.sig4, .custom-kontakt .barcode-box .barcode-stripes span.sig5, .custom-kontakt .barcode-box .barcode-stripes span.sig6, .custom-kontakt .barcode-box .barcode-stripes span.sig7, .custom-kontakt .barcode-box .barcode-stripes span.sig8, .custom-kontakt .barcode-box .barcode-stripes span.sig9 { 
+  color: #000; 
+  font-size: 12px;
+  font-family:'Quicksand', sans-serif;
+  float: left; 
+  margin-top: -10px;
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig1 { 
+  margin-right: 20px; 
+  margin-left: 7px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig2 { 
+  margin-right: 20px; 
+  margin-left: 7px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig3 { 
+  margin-right: 13px; 
+  margin-left: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig4 { 
+  margin-right: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig5 { 
+  margin-right: 15px; 
+  margin-left: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig6 { 
+  margin-right: 15px; 
+  margin-left: 2px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig7 { 
+  margin-right: 15px; 
+  margin-left: 10px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig8 { 
+  margin-right: 15px; 
+  margin-left: 5px; 
+}
+.custom-kontakt .barcode-box .barcode-stripes span.sig9 { 
+  margin-left: 12px; 
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="payment.css">
+
+    <title>Payment</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="./assests/train.png" alt="Logo">
+            A-train
+        </a>
+        <div class="menu">
+            <a href="#services">Account</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+
+
+    <div class="mainscreen">
+        <div class="card">
+            
+            <div class="rightside">
+                <form id="payment-form">
+                    <h1>CheckOut</h1>
+                    <h2>Payment Information</h2>
+                    
+                    <!-- Total Price Section -->
+                    <p>Total Price: <span id="total-price">Loading...</span></p>
+                    
+                    <p>Cardholder Name</p>
+                    <input type="text" class="inputbox" name="name" id="cardholder-name" required />
+                    <p>Card Number</p>
+                    <input type="number" class="inputbox" name="card_number" id="card-number" required />
+                
+                    <p>Card Type</p>
+                    <select class="inputbox" name="card_type" id="card-type" required>
+                        <option value="">--Select a Card Type--</option>
+                        <option value="Visa">Visa</option>
+                        <option value="RuPay">RuPay</option>
+                        <option value="MasterCard">MasterCard</option>
+                    </select>
+                    <div class="expcvv">
+                        <p class="expcvv_text">Expiry</p>
+                        <input type="date" class="inputbox" name="exp_date" id="exp-date" required />
+                
+                        <p class="expcvv_text2">CVV</p>
+                        <input type="password" class="inputbox" name="cvv" id="cvv" required />
+                    </div>
+                    <p></p>
+                    <button type="submit" class="button">CheckOut</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+</html>

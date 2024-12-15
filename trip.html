@@ -37,15 +37,42 @@
                 <input type="date" id="departure-date">
             </div>
 
-            <div class="search-options">
-                <select class="option">
-                    <option>Economy</option>
-                    <option>Business</option>
-                    <option>First Class</option>
-                </select>
-            </div>
         </div>
 
+        <div id="passengerCount" class="field">
+            <span class="icon">👤</span>
+            <div class="passenger-selector">
+                <input type="text" id="passenger-count" value="1 Adult" readonly>
+                <div class="passenger-dropdown">
+                    <div class="passenger-row">
+                        <label>Adult <small>(12 years and above)</small></label>
+                        <div>
+                            <button type="button" class="decrease" data-type="adult">-</button>
+                            <span id="adult-count">1</span>
+                            <button type="button" class="increase" data-type="adult">+</button>
+                        </div>
+                    </div>
+                    <div class="passenger-row">
+                        <label>Child <small>(2 to 11 years)</small></label>
+                        <div>
+                            <button type="button" class="decrease" data-type="child">-</button>
+                            <span id="child-count">0</span>
+                            <button type="button" class="increase" data-type="child">+</button>
+                        </div>
+                    </div>
+                    <div class="passenger-row">
+                        <label>Infant <small>(under 2 years)</small></label>
+                        <div>
+                            <button type="button" class="decrease" data-type="infant">-</button>
+                            <span id="infant-count">0</span>
+                            <button type="button" class="increase" data-type="infant">+</button>
+                        </div>
+                    </div>
+                    <button type="button" id="confirm-passenger-selection">Confirm</button>
+                </div>
+            </div>
+        </div>
+        
         <button class="search-button">Search</button>
     </div>
 </div>

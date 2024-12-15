@@ -18,7 +18,8 @@ body {
 
 .container1{
     width: 100%;
-    background: linear-gradient(to bottom, #175d69 23%, #330c43 95%);
+    background-image: linear-gradient(rgba(22, 2, 2, 0.5), rgba(75, 69, 69, 0.5)), url("./assests/pexels-jefriwibawa-1387037.jpg");
+
     min-height: 100vh;
     background-size: cover;
     background-position: center;
@@ -30,7 +31,7 @@ body {
 .btn1{
     font-size: 1.2rem; /* Increase font size for larger text */
     padding: 15px 40px; /* Add more padding for a larger button */
-    background: #f5168d; /* Keep the background color */
+    background: #e7057e; /* Keep the background color */
     color: #fff;
     border: none;
     outline: none;
@@ -46,11 +47,12 @@ body {
 
 .content{
     margin-top: 14%;
-    color: #fff;
+    color: #5c5858;
     max-width: 620px;
 }
 
 .content h1{
+  color: #ffffff;
     font-size: 90px;
     font-weight: 600;
     line-height: 85px;
@@ -58,7 +60,7 @@ body {
 }
 .content p{
   font-size: 25px;
-  color: #cccccc;
+  color: #ece5e5;
 }
 .content form{
     display: flex;
@@ -68,13 +70,7 @@ body {
     padding: 10px;
     margin-top: 30px;
 }
-.content form input{
-    border: 0;
-    outline: 0;
-    width: 100%;
-    font-size: 20px;
-    padding-left: 10px;
-}
+
 
 .content form .btn1{
     font-size: 20px;
@@ -90,11 +86,12 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     justify-content: space-between;
+    color: #000;
 }
 
 .navbar .hamburger-btn {
     display: none;
-    color: #fff;
+    color: #3d3939;
     cursor: pointer;
     font-size: 1.5rem;
 }
@@ -112,7 +109,7 @@ body {
 }
 
 .navbar .logo h2 {
-    color: #fff;
+    color: #ffffff;
     font-weight: 600;
     font-size: 1.7rem;
 }
@@ -129,12 +126,12 @@ body {
     right: 20px;
     top: 20px;
     display: none;
-    color: #000;
+    color: #ffffff;
     cursor: pointer;
 }
 
 .navbar .links a {
-    color: #fff;
+    color: #ffffff;
     font-size: 1.1rem;
     font-weight: 500;
     text-decoration: none;
@@ -142,7 +139,7 @@ body {
 }
 
 .navbar .links a:hover {
-    color: #19e8ff;
+    color: #454646;
 }
 
 .navbar .login-btn {

@@ -4,15 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation</title>
+    <style>
+
+         /* Variables */
+         :root {
+            --bg-color: #424242;
+            --hl-color: #2196F3;
+            --muted-color: rgba(255, 255, 255, 0.7);
+            --trans-time: 300ms;
+            --width: 320px;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f4f9;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            min-height: 100vh;
+            
+        }
+        .reservation-container {
+            background: #f2f2f2;
+            border-radius: 10px;
+            padding: 30px;
+            width: 50%;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 100px auto;
+        }
+        h2, h3 {
+            text-align: center;
+            color: #441752;
+        }
+        label {
+            font-size: 1rem;
+            color: #441752;
+            font-style: italic;
+        }
+        input, select {
+            width: 90%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: #441752;
+            color: white;
+        }
+        .seat-button {
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #441752;
+            cursor: pointer;
+        }
+        .seat-button:hover {
+            background-color: #441752;
+            color: #fff;
+        }
+        .selected-seat {
+            background-color: #441752;
+            color: white;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #1B1833;
+            padding: 10px 20px;
+            position: fixed; /* Ensure the navbar stays at the top */
+            top: 0;
+            left: 0;
+            width: 100%; /* Make it span the entire width */
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: #6a11cb;
+        }
+
+        .navbar .logout-btn {
+            margin-top: 5px;
+            background: #441752;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .navbar .logout-btn:hover {
+            background: #2575fc;
+        }
+
+      
+    </style>
 </head>
+
 <body>
-    <div id="trip-info"></div>
-    <!-- Additional reservation form -->
-    <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <button type="submit">Confirm Booking</button>
-    </form>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="./assests/train.png" alt="Logo">
+            A-train
+        </a>
+        <div class="menu">
+            <a href="#services">Account</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- Reservation Container -->
+    <div class="reservation-container">
+        <h1 id="trip-info"></h1>
+
+        <div id="main-user-form">
+            <h2>Main User</h2>
+            <label for="main-user-name">Full Name:</label>
+            <input type="text" id="main-user-name" name="main-user-name" placeholder="Enter your full name" required>
+
+            <label for="main-user-luggage-weight">Luggage Weight (kg):</label>
+            <input type="number" id="main-user-luggage-weight" name="main-user-luggage-weight" placeholder="Enter weight (kg)" step="0.01" min="0">
+
+            <label for="main-user-no-of-luggage">Number of Luggage:</label>
+            <input type="number" id="main-user-no-of-luggage" name="main-user-no-of-luggage" placeholder="Enter number of luggage" min="0">
+
+            <label for="class_type">Choose Class Type:</label>
+            <select id="class_type" name="class_type" required>
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
+            </select>
+
+            <div id="main-user-seat-selection">
+                <h3>Select Seat for Main User</h3>
+                <input type="hidden" id="main-user-seat">
+            </div>
+        </div>
+
+        <div id="passenger-info">
+            <h2>Dependents</h2>
+            <div id="dependent-seat-selections"></div>
+        </div>
+
+        <form id="reservation-form" class="reservation-form">
+            <button type="submit" id="pay-now">Proceed to Payment</button>
+            <button type="submit" id="pay-later">Pay Later</button>
+        </form>
+    </div>
+    
+
     <script src="res.js"></script>
 </body>
 </html>

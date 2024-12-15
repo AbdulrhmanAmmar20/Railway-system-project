@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="contactus.css">
+
+<div class="container">
+    <div class="row">
+        <h1>Contact Us</h1>
+    </div>
+    <div class="row">
+        <h4 style="text-align:center">We'd love to hear from you!</h4>
+    </div>
+    <form id="contact-form" class="row input-container">
+        <div class="col-xs-12">
+            <div class="styled-input wide">
+                <input type="text" id="name" required />
+                <label>Name</label> 
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="styled-input">
+                <input type="email" id="email" required />
+                <label>Email</label> 
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="styled-input" style="float:right;">
+                <input type="text" id="phone" required />
+                <label>Phone Number</label> 
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="styled-input wide">
+                <textarea id="message" required></textarea>
+                <label>Message</label>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <button type="submit" class="btn-lrg submit-btn">Send Message</button>
+        </div>
+    </form>
+    <div id="success-message" class="row" style="display: none; text-align: center; margin-top: 20px;">
+        <h4>Thank you for contacting us! We will get back to you soon.</h4>
+    </div>
+</div>
+
+<script src="contactus.js"></script>
