@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dependents Traveling</title>
+  <style>
+    body {
+      background-color: #AB44;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #1B1833;
+        padding: 10px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+  
+      .navbar .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+      }
+      .navbar .logo img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+  
+      .navbar .menu {
+        display: flex;
+        gap: 20px;
+      }
+  
+      .navbar .menu a {
+        text-decoration: none;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+  
+      .navbar .menu a:hover {
+        color: #c1b6cd;
+      }
+  
+      .navbar .logout-btn {
+        background: #441752;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+  
+      .navbar .logout-btn:hover {
+        background: #441752;
+      }
+
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .date-picker {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .date-picker input {
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      background-color: #F29F58;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .date-picker input:hover {
+      background-color: #E0924D;
+    }
+
+    .date-picker button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      background-color: #441752;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .date-picker button:hover {
+      background-color: #3a1143;
+    }
+
+    .dependent-section {
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #F29F58;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      text-align: left;
+    }
+
+    .dependent-section h3 {
+      color: #1B1833;
+      font-size: 1.8rem;
+    }
+
+    .dependent-section table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    table th, table td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #441752;
+      color: white;
+    }
+
+    table tr:hover {
+      background-color: #ffe2bf;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      color: rgba(68, 12, 70, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <img src="./assests/train.png" alt="Logo">
+      A-Train
+    </a>
+    <div class="menu">
+      <a href="#services">Account</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </nav>
+
+  <!-- Content Section -->
+  <div class="content">
+    <div class="date-picker">
+      <label for="dateInput">Select Date:</label>
+      <input type="date" id="dateInput">
+      <button onclick="loadDependents()">View Dependents</button>
+    </div>
+    <div id="dependents-container">
+      <!-- Dependent details will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 A-Train. All rights reserved.</p>
+  </footer>
+
+  <script src="dependents.js"></script>
+</body>
+</html>
